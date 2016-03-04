@@ -18,7 +18,9 @@
 		</tr>
 	</thead>
 	<tbody>
+
 <?php foreach ($produtos as $prod) : ?>
+	
 		<tr>
 			<td> <?=$prod['nome'] ?> </td>
 			<td> <?=$prod['preco'] ?> </td>
@@ -31,6 +33,7 @@
 	</tbody>
 
 <?php endforeach ?>
+
 </tbody>
 </table>
 

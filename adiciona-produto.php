@@ -12,13 +12,14 @@ if(insereProduto($conexao, $nome, $preco)){
 ?>
 	<p class="alert-success">Produto <?= $nome ?>, R$ <?= $preco ?>  adicionado com sucesso!</p>
 <?php
+
 } else {
 	$msg = mysqli_error($conexao);
 ?>
 	<p class="alert-danger">O produto <? = $nome; ?> não foi adicionado</p>
 <?php
-
 }
+
+require_once 'rodape.php';
 ?>
 
-<?php require_once 'rodape.php' ?>

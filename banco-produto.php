@@ -2,6 +2,8 @@
 
 <?php
 
+//Esta funcão lista os produtos na tela
+
 	function listaProdutos($conexao){
 		$produtos = array();
 		$resultado = mysqli_query($conexao, "select * from produtos");
@@ -15,15 +17,15 @@
 
 	$produtos = listaProdutos($conexao);
 
+// Esta função insere o produto no banco
 
 	function insereProduto($conexao, $nome, $preco){
 		$query = "insert into produtos(nome,preco) values('{$nome}',{$preco})"; 
-		/*no preço, como é um número, não utiliza aspas, já o nome é um VARCHAR "texto"*/ 
 
 		return mysqli_query($conexao,$query); 
-		/*conectando com mySQL; se não usar o RETURN, a mysqli_query não retorna nada, o produto sendo inserido ou não.*/
 }
 
+//Esta função remove o produto do banco
 
 	function removerProduto($conexao, $id){
 		$query = "delete from produtos where id = {$id}";
