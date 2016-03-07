@@ -1,35 +1,28 @@
-<?php require_once 'conexao.php' ?>
-
 <?php
 
-//Esta funcão lista os produtos na tela
+// Função para listar na tela os produtos adicionados
+function listaProdutos($conexao){
+	$produtos = array();
+	$resultado = mysqli_query($conexao, "select p.*, c.nome as categoria from produtos as p join categorias as c on p.categoria_id = c.id");
 
-	function listaProdutos($conexao){
-		$produtos = array();
-		$resultado = mysqli_query($conexao, "select * from produtos");
-
-		while($prod = mysqli_fetch_assoc($resultado)){
-			array_push($produtos, $prod);
-		}
-
-		return $produtos;
+	while($prod = mysqli_fetch_assoc($resultado)){
+		array_push($produtos, $prod);
 	}
-
-	$produtos = listaProdutos($conexao);
-
-// Esta função insere o produto no banco
-
-	function insereProduto($conexao, $nome, $preco){
-		$query = "insert into produtos(nome,preco) values('{$nome}',{$preco})"; 
-
-		return mysqli_query($conexao,$query); 
+	return $produtos;
 }
 
-//Esta função remove o produto do banco
+$produtos = listaProdutos($conexao);
 
-	function removerProduto($conexao, $id){
-		$query = "delete from produtos where id = {$id}";
-		return mysqli_query($conexao, $query);
-	}
+// Função para inserir o produto
+function insereProduto($conexao, $nome, $preco, $descricao, $categoria_id, $usado){
+	$query = "insert into produtos(nome,preco, descricao, categoria_id, usado) values('{$nome}',{$preco}, '{$descricao}', {$categoria_id}, {$usado})"; 
+
+	return mysqli_query($conexao,$query); 
+}
+
+// Função para remover o produto da tabela
+function removerProduto($conexao, $id){
+	return mysqli_query($conexao, "delete from produtos where id= {$id}");
+}
 
 ?>

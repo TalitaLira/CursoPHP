@@ -2,24 +2,30 @@
 
 <?php
 
-//Dando ação ao formulário e resposta de sucesso e fracasso ao adicionar o produto.
+	// Declaração das variáveis que serão adicionadas no produto
+	$nome = $_POST['nome'];
+	$preco = $_POST['preco'];
+	$descricao = $_POST['descricao'];
+	$categoria_id = $_POST['categoria_id'];
 
-$nome = $_GET["nome"];
-$preco = $_GET["preco"];
+	if(array_key_exists('usado', $_POST)) {
+		$usado = "true";
+	} else {
+		$usado = "false";
+	}
 
-
-if(insereProduto($conexao, $nome, $preco)){
+	// msg de sucesso ou erro caso o produto seja ou não adicionado
+	if(insereProduto($conexao,$nome, $preco, $descricao, $categoria_id, $usado)){
 ?>
-	<p class="alert-success">Produto <?= $nome ?>, R$ <?= $preco ?>  adicionado com sucesso!</p>
+		<p class="alert-success">Produto <?= $nome ?>, R$ <?= $preco ?>  adicionado com sucesso!</p>
+<?php
+	} else {
+		$msg = mysqli_error($conexao);
+?>
+		<p class="alert-danger">O produto <? = $nome; ?> não foi adicionado</p>
 <?php
 
-} else {
-	$msg = mysqli_error($conexao);
-?>
-	<p class="alert-danger">O produto <? = $nome; ?> não foi adicionado</p>
-<?php
-}
-
-require_once 'rodape.php';
+	}
 ?>
 
+<?php include 'rodape.php' ?>
