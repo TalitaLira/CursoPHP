@@ -19,6 +19,11 @@
 			<input type="number" name="preco" class="form-control"><br><br>
 		</label>
 	</div>
+	
+	<div class="form-group">
+		<label>Descrição:</label>
+		<textarea name="descricao" class="form-control"></textarea>
+	</div>
 
 	<div class="form-group"> <!-- selecionar categoria -->
 		<label>Categoria:</label>
@@ -29,11 +34,6 @@
 				</option>
 			<?php endforeach ?>
 		</select>
-	</div>
-	
-	<div class="form-group">
-		<label>Descrição:</label>
-		<textarea name="descricao" class="form-control"></textarea>
 	</div>
 
 	<div class="checkbox"> <!-- selação do Usado -->

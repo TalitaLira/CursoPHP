@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 // Função para listar na tela os produtos adicionados
 function listaProdutos($conexao){
